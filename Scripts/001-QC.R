@@ -2,10 +2,16 @@
 # Description:  Data Pre-Processing (Quality Control)
 # Author:       Adam Luo
 
+# portions of code were adapted from: 
+# Griswold M, Reeves J, Divakar P, Ortogero N, Yang Z, Zimmerman S, Vitancol R, Henderson D (2025). 
+# GeoMxWorkflows: GeoMx Digital Spatial Profiler (DSP) data analysis workflows. 
+# doi:10.18129/B9.bioc.GeoMxWorkflows, R package version 1.13.0, https://bioconductor.org/packages/GeoMxWorkflows.
+
 # Clear environment
 rm(list = ls())
 
 # Load packages
+require(here)
 library(stats)
 library(tidyverse)
 library(readxl)
@@ -14,7 +20,6 @@ library(utils)
 library(scales)
 library(BiocManager)
 library(NanoStringNCTools)
-library(GeomxTools)
 library(GeoMxWorkflows)
 library(reshape2)
 library(preprocessCore)
@@ -26,11 +31,8 @@ library(ggprism)
 library(ggpubr)
 library(ggrepel)
 
-# Set working directory
-setwd(path.expand("~"))
-
 # Load data into GeoMxSet object
-datadir <- file.path("./Data/RawFiles")
+datadir <- here("Data/RawFiles")
 DCCFiles <- dir(file.path(datadir, "dcc"),
                 pattern = ".dcc$",
                 full.names = TRUE,
